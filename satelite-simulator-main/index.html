@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satellite Simulator - Interactive 3D Solar System</title>
+    <meta name="description" content="Interactive 3D visualization of planetary orbits using JPL orbital elements data">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="quantum-mode.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <span class="icon">🛰️</span>
+                    Satellite Simulator
+                </h1>
+                <p class="subtitle">Interactive 3D Solar System Visualization</p>
+
+                <!-- Mode Toggle -->
+                <div class="mode-toggle-container">
+                    <label class="mode-toggle">
+                        <input type="checkbox" id="quantumModeToggle">
+                        <span class="mode-slider"></span>
+                    </label>
+                    <div class="mode-labels">
+                        <span id="normalModeLabel" class="mode-label active">🌍 Normal Satellite Mode</span>
+                        <span id="quantumModeLabel" class="mode-label">⚛️ Quantum Navigation Mode</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="canvas-container">
+                <canvas id="solarSystem"></canvas>
+                <div class="controls-overlay">
+                    <div class="control-group">
+                        <label for="speedSlider">
+                            <span class="control-icon">⚡</span>
+                            Animation Speed
+                        </label>
+                        <input type="range" id="speedSlider" min="0" max="10" value="1" step="0.5">
+                        <span id="speedValue">1x</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="zoomSlider">
+                            <span class="control-icon">🔍</span>
+                            Zoom Level
+                        </label>
+                        <input type="range" id="zoomSlider" min="50" max="300" value="150" step="10">
+                        <span id="zoomValue">150%</span>
+                    </div>
+                    <div class="control-group">
+                        <button id="toggleAnimation" class="btn-primary">
+                            <span class="btn-icon">⏸️</span>
+                            Pause
+                        </button>
+                        <button id="resetView" class="btn-secondary">
+                            <span class="btn-icon">🔄</span>
+                            Reset
+                        </button>
+                    </div>
+                    <div class="control-group">
+                        <label>
+                            <input type="checkbox" id="showOrbits" checked>
+                            <span>Show Orbit Paths</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" id="showLabels" checked>
+                            <span>Show Labels</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" id="showSatellites" checked>
+                            <span>Show Satellites 🛰️</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quantum Mode Controls (Hidden by default) -->
+            <div id="quantumControls" class="quantum-controls-panel" style="display: none;">
+                <h3>⚛️ Quantum Navigation</h3>
+
+                <div class="quantum-section">
+                    <h4>1. Environment Prediction</h4>
+                    <button id="qGeneratePredictions" class="quantum-btn">
+                        <span>🌌</span> Generate Superposition
+                    </button>
+                    <button id="qCollapseEnvironment" class="quantum-btn" disabled>
+                        <span>⚡</span> Collapse Environment
+                    </button>
+                </div>
+
+                <div class="quantum-section">
+                    <h4>2. Route Planning</h4>
+                    <button id="qGenerateRoutes" class="quantum-btn" disabled>
+                        <span>🛤️</span> Generate Routes
+                    </button>
+                    <button id="qCollapseRoute" class="quantum-btn" disabled>
+                        <span>✨</span> Collapse to Best Path
+                    </button>
+                </div>
+
+                <div class="quantum-section">
+                    <h4>3. Execute</h4>
+                    <button id="qExecuteNav" class="quantum-btn execute" disabled>
+                        <span>🚀</span> Execute Navigation
+                    </button>
+                    <button id="qReset" class="quantum-btn reset">
+                        <span>🔄</span> Reset Quantum
+                    </button>
+                </div>
+
+                <div class="quantum-status">
+                    <span class="status-label">System State:</span>
+                    <span id="qSystemState" class="status-value">READY</span>
+                </div>
+            </div>
+
+            <aside class="info-panel">
+                <div class="info-header">
+                    <h2>Planet Information</h2>
+                    <div class="epoch-info">
+                        <span class="label">Epoch:</span>
+                        <span class="value">J2000.0</span>
+                    </div>
+                </div>
+
+                <div id="planetInfo" class="planet-list">
+                    <!-- Planet info will be dynamically populated -->
+                </div>
+
+                <div class="stats-panel">
+                    <h3>Simulation Stats</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">Days Elapsed:</span>
+                        <span id="daysElapsed" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Frame Rate:</span>
+                        <span id="fps" class="stat-value">60 FPS</span>
+                    </div>
+                </div>
+
+                <div class="info-footer">
+                    <p class="credits">Using JPL Orbital Elements Data</p>
+                    <p class="note">Click and drag to rotate • Scroll to zoom</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script src="quantum-algorithms.js"></script>
+    <script src="app.js"></script>
+    <script src="quantum-mode.js"></script>
+</body>
+
+</html>

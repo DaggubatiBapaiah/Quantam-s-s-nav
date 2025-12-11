@@ -1,0 +1,27 @@
+# Quantum Computing Backend Requirements
+# Install with: pip install -r requirements.txt
+
+# Core Qiskit packages
+qiskit>=1.0.0
+qiskit-aer>=0.13.0
+qiskit-algorithms>=0.3.0
+
+# PennyLane packages
+pennylane>=0.33.0
+pennylane-qiskit>=0.33.0
+
+# Visualization
+matplotlib>=3.7.0
+pylatexenc>=2.10
+
+# Web API
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# Scientific computing
+numpy>=1.24.0
+scipy>=1.11.0
+
+# Optional: IBM Quantum access (for real quantum hardware)
+# qiskit-ibm-runtime>=0.15.0
+# qiskit-ibm-provider>=0.7.0

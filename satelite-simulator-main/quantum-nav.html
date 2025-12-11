@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Navigation System - Deep Space Autonomous Pathfinding</title>
+    <meta name="description"
+        content="Quantum superposition-based autonomous navigation without sensors, GPS, or real-time communication">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="quantum-style.css">
+</head>
+
+<body>
+    <div class="quantum-container">
+        <!-- Header -->
+        <header class="quantum-header">
+            <div class="header-content">
+                <h1 class="quantum-title">
+                    <span class="quantum-icon">⚛️</span>
+                    QUANTUM NAVIGATION SYSTEM
+                </h1>
+                <p class="quantum-subtitle">Autonomous Deep Space Pathfinding via Superposition Prediction</p>
+                <div class="mode-toggle">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="quantumMode" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span class="mode-label">Quantum Mode Active</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <!-- Visualization Canvas -->
+            <div class="canvas-section">
+                <canvas id="quantumCanvas"></canvas>
+
+                <!-- Quantum State Overlay -->
+                <div class="quantum-overlay">
+                    <div class="state-indicator">
+                        <span class="state-label">System State:</span>
+                        <span id="systemState" class="state-value">READY</span>
+                    </div>
+                    <div class="superposition-counter">
+                        <span class="counter-label">Active Predictions:</span>
+                        <span id="predictionCount" class="counter-value">0</span>
+                    </div>
+                </div>
+
+                <!-- Control Panel -->
+                <div class="control-panel">
+                    <h3>⚛️ Quantum Control</h3>
+
+                    <div class="control-section">
+                        <h4>1. Environment Prediction</h4>
+                        <button id="generatePredictions" class="quantum-btn primary">
+                            <span class="btn-icon">🌌</span>
+                            Generate Superposition
+                        </button>
+                        <button id="collapseEnvironment" class="quantum-btn secondary" disabled>
+                            <span class="btn-icon">⚡</span>
+                            Collapse Environment
+                        </button>
+                    </div>
+
+                    <div class="control-section">
+                        <h4>2. Route Planning</h4>
+                        <button id="generateRoutes" class="quantum-btn primary" disabled>
+                            <span class="btn-icon">🛤️</span>
+                            Generate Routes
+                        </button>
+                        <button id="collapseRoute" class="quantum-btn secondary" disabled>
+                            <span class="btn-icon">✨</span>
+                            Collapse to Best Path
+                        </button>
+                    </div>
+
+                    <div class="control-section">
+                        <h4>3. Navigation</h4>
+                        <button id="executeNavigation" class="quantum-btn execute" disabled>
+                            <span class="btn-icon">🚀</span>
+                            Execute Navigation
+                        </button>
+                        <button id="resetSystem" class="quantum-btn reset">
+                            <span class="btn-icon">🔄</span>
+                            Reset System
+                        </button>
+                    </div>
+
+                    <div class="control-section">
+                        <h4>⚙️ Settings</h4>
+                        <label>
+                            <input type="checkbox" id="showPredictions" checked>
+                            <span>Show Prediction Halos</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" id="showRoutes" checked>
+                            <span>Show Candidate Routes</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" id="showHazards" checked>
+                            <span>Show Hazards</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" id="autoAnimate" checked>
+                            <span>Auto-Animate Orbit</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Panel -->
+            <aside class="data-panel">
+                <div class="panel-section">
+                    <h3>📊 Navigation Telemetry</h3>
+
+                    <div class="telemetry-grid">
+                        <div class="telemetry-item">
+                            <span class="telem-label">Satellite Position</span>
+                            <span id="satPosition" class="telem-value">X: 0.00, Y: 0.00</span>
+                        </div>
+                        <div class="telemetry-item">
+                            <span class="telem-label">Velocity Vector</span>
+                            <span id="satVelocity" class="telem-value">0.00 km/s</span>
+                        </div>
+                        <div class="telemetry-item">
+                            <span class="telem-label">Distance to Target</span>
+                            <span id="targetDistance" class="telem-value">-- AU</span>
+                        </div>
+                        <div class="telemetry-item">
+                            <span class="telem-label">Orbital Altitude</span>
+                            <span id="altitude" class="telem-value">-- km</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>⚛️ Quantum Predictions</h3>
+                    <div id="predictionsList" class="predictions-list">
+                        <p class="empty-state">No predictions generated</p>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>🛤️ Route Candidates</h3>
+                    <div id="routesList" class="routes-list">
+                        <p class="empty-state">No routes calculated</p>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>📈 Mission Stats</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Fuel Remaining</span>
+                            <div class="fuel-bar">
+                                <div id="fuelLevel" class="fuel-fill" style="width: 100%"></div>
+                            </div>
+                            <span id="fuelPercent" class="stat-value">100%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Prediction Accuracy</span>
+                            <span id="accuracy" class="stat-value">--</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Hazards Avoided</span>
+                            <span id="hazardsAvoided" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Mission Time</span>
+                            <span id="missionTime" class="stat-value">00:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section info-section">
+                    <h3>ℹ️ System Info</h3>
+                    <p class="info-text">
+                        <strong>Quantum Navigation:</strong> This system replaces traditional sensors with quantum
+                        superposition prediction.
+                        It generates multiple possible environments, collapses them to the most probable scenario, and
+                        autonomously
+                        navigates through deep space without human intervention.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Orbital Mechanics</span>
+                        <span class="tech-badge">Quantum Prediction</span>
+                        <span class="tech-badge">Autonomous AI</span>
+                        <span class="tech-badge">Sensor-Free</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script src="quantum-nav.js"></script>
+</body>
+
+</html>
